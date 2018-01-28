@@ -6,7 +6,8 @@ public class Player : MonoBehaviour
 { 
     public int Health;
     public bool IsDark;
-    private bool IsAlive = true;
+    public bool IsAlive = true;
+    public bool Win = false;
 
     public AudioClip ClipOof;
     public AudioClip ClipYeahBoi;
@@ -16,6 +17,9 @@ public class Player : MonoBehaviour
     private AudioSource AudioYeahBoi;
     private AudioSource AudioBummer;
 
+    public GameObject win;
+
+    void Start() {win.gameObject.SetActive(false);}
 
     public AudioSource AddAudio(AudioClip clip, bool loop, bool playAwake, float vol)
     {
@@ -45,10 +49,15 @@ public class Player : MonoBehaviour
             IsAlive = false;
         }
 
+        if (Win == true)
+        {
+            PlayerWin();
+        }
+
         RenderSettings.fog = IsDark;
     }
 
-    private void OnTriggerEnter(Collider other)
+    public void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "Obstacle")
         {
@@ -58,9 +67,16 @@ public class Player : MonoBehaviour
         }
         if (other.gameObject.tag == "Goal")
         {
+            Win = true;
+            PlayerWin();
             AudioYeahBoi.Play();
             transform.localScale += new Vector3(0.5f, 0.5f, 0.5f);
+           
         }
+    }
+    void PlayerWin()
+    {
+       win.gameObject.SetActive(true);
     }
 }
 
