@@ -3,10 +3,11 @@ using System.Collections;
 
 public class Scannable : MonoBehaviour
 {
-	public Animator UIAnim;
+	//public Animator UIAnim;
 
 	public void Ping()
 	{
-		UIAnim.SetTrigger("Ping");
+       // GetComponent<AudioSource>().Play();
+        //UIAnim.SetTrigger("Ping");
     }
 }

@@ -7,6 +7,9 @@ public class ScannerEffectDemo : MonoBehaviour
 	public Transform ScannerOrigin;
 	public Material EffectMaterial;
 	public float ScanDistance;
+    public float EchoSpeed;
+    public float EchoCooldown = 1;
+    private float timer;
 
 	private Camera _camera;
 
@@ -17,13 +20,15 @@ public class ScannerEffectDemo : MonoBehaviour
 	void Start()
 	{
 		_scannables = FindObjectsOfType<Scannable>();
+        timer = EchoCooldown;
     }
 
 	void Update()
 	{
+        timer += Time.deltaTime;
 		if (_scanning)
 		{
-			ScanDistance += Time.deltaTime * 50;
+			ScanDistance += Time.deltaTime * EchoSpeed;
 			foreach (Scannable s in _scannables)
 			{
 				if (Vector3.Distance(ScannerOrigin.position, s.transform.position) <= ScanDistance)
@@ -31,10 +36,12 @@ public class ScannerEffectDemo : MonoBehaviour
 			}
 		}
 
-		if (Input.GetKeyDown(KeyCode.C))
+		if (Input.GetKeyDown(KeyCode.Space) && timer >= EchoCooldown)
 		{
 			_scanning = true;
-			ScanDistance = 0;
+            GetComponent<AudioSource>().Play();
+            ScanDistance = 0;
+            timer = 0;
 		}
 
 		if (Input.GetMouseButtonDown(0))

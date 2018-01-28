@@ -33,11 +33,11 @@ Material:
     m_Floats:
     - _HBarVisibility: 0.2
     - _LeadSharp: 25
-    - _ScanDistance: 120.949066
+    - _ScanDistance: 1022.20953
     - _ScanWidth: 10
     - _Width: 16
     m_Colors:
-    - _HBarColor: {r: 1, g: 1, b: 1, a: 0}
-    - _LeadColor: {r: 1, g: 1, b: 1, a: 0}
-    - _MidColor: {r: 1, g: 1, b: 1, a: 0}
-    - _TrailColor: {r: 1, g: 1, b: 1, a: 0}
+    - _HBarColor: {r: 0.07450981, g: 0.19607845, b: 1, a: 0}
+    - _LeadColor: {r: 0.4044118, g: 0.4824546, b: 1, a: 0}
+    - _MidColor: {r: 0.07352942, g: 0.19543342, b: 1, a: 0}
+    - _TrailColor: {r: 0.07450981, g: 0.19607845, b: 1, a: 0}
